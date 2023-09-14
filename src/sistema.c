@@ -104,7 +104,6 @@ void menu(void)
     printf("[7] Editar contato\n");
     printf("[8] Sair\n");
     printf("========================================\n");
-    int controle = LeOpcao(OPCAO1,OPCAO8);
 }
 
 void printGREEN(char *text){
