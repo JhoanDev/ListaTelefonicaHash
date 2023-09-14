@@ -3,6 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "sistema.h"
+
+#define RED "\x1B[31m"
+#define GREEN "\x1B[32m"
+#define YELLOW "\x1B[33m"
+#define WHITE "\x1B[0m\n"
 
 #define N_OPCOES 8
 
@@ -27,7 +33,8 @@ void LimpaBuffer(void)
 int LeOpcao(int menorValor, int maiorValor)
 {
     int op;
-    char entrada[50];
+    char entrada[100];
+    char text[50];
     while (1)
     {
         printf("Digite sua opcao: ");
@@ -36,12 +43,12 @@ int LeOpcao(int menorValor, int maiorValor)
         if (op >= menorValor && op <= maiorValor && strlen(entrada) == 1)
         {
             LimpaBuffer();
-            Beep(1200, 300);
             break;
         }
         else
         {
-            printf("Opcao invalida. A opcao deve estar entre %c e %c. \n", menorValor, maiorValor);
+            sprintf(text, "Opcao invalida. A opcao deve estar entre %c e %c.\n", menorValor, maiorValor);
+            printRED(text);
             LimpaBuffer();
         }
     }
@@ -86,5 +93,28 @@ void corrige_nome(char nome[])
 
 void menu(void)
 {
-    
+    printf("Menu:\n");
+    printf("========================================\n");
+    printf("[1] Criar contato\n");
+    printf("[2] Listar contatos\n");
+    printf("[3] Buscar contato\n");
+    printf("[4] Exportar contatos\n");
+    printf("[5] Importar contatos\n");
+    printf("[6] Apagar contato\n");
+    printf("[7] Editar contato\n");
+    printf("[8] Sair\n");
+    printf("========================================\n");
+    int controle = LeOpcao(OPCAO1,OPCAO8);
+}
+
+void printGREEN(char *text){
+    printf("%s%s%s",GREEN,text,WHITE);
+}
+
+void printYELLOW(char *text){
+    printf("%s%s%s",YELLOW,text,WHITE);
+}
+
+void printRED(char *text){
+    printf("%s%s%s",RED,text,WHITE);
 }
