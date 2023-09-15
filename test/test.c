@@ -1,167 +1,77 @@
-#include <stdio.h>  //funções basicas da linguagem c
-#include <stdlib.h> //para fazer alocação dinamica
-#include <string.h> //para usar strings
-#include <ctype.h>  //manipulação de caracteres
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#define MaxNome 100
-#define Leitos 25
-#define codigohospital 77
+// Função para converter uma string em uma sequência binária e retornar a string binária
+char *stringParaBinario(const char *texto) {
+    int i, j;
+    int pos = 0; // Variável de posição na string binária
 
-typedef union document Document;
-typedef struct pacientes Pacientes;
-typedef struct listapacientes Listapacientes;
-typedef struct hospital Hospital;
+    // Calcula o tamanho necessário da string binária
+    int tamanhoBinario = 8 * strlen(texto) + 1;
 
-union document
-{
-    char cpf[15];
-    char rg[12];
-};
+    // Aloca memória dinamicamente para a string binária
+    char *binario = (char *)malloc(tamanhoBinario);
 
-struct pacientes
-{
-    char nome[MaxNome];
-    Document documento;
-    char enfermidade[50];
-    int internado; // sim == 1, nao == 0
-    char receita[100];
-};
+    if (binario == NULL) {
+        fprintf(stderr, "Erro de alocação de memória.\n");
+        exit(1);
+    }
 
-struct listapacientes
-{
-    Pacientes *pacientes;
-    struct listapacientes *next;
-    struct listapacientes *prev;
-};
-
-struct hospital
-{
-    int codigo;
-    int leitos;
-    char localizacao[20];
-    char nome[10];
-    Listapacientes *lista;
-};
-
-Hospital *hospital_cria(void)
-{
-    Hospital *h = (Hospital *)malloc(sizeof(Hospital));
-    h->lista = lista_cria();
-    h->lista->next = NULL;
-    h->lista->prev = NULL;
-    h->leitos = Leitos;
-    h->codigo = codigohospital;
-    strcpy(h->nome, "HealCare");
-    strcpy(h->localizacao, "Cidade: UmariGomes");
-    return h;
-}
-
-Listapacientes *lista_cria(void)
-{
-    Listapacientes *l = (Listapacientes *)malloc(sizeof(Listapacientes));
-    return l;
-}
-
-Pacientes preenche_paciente(void)
-{
-    Pacientes paciente;
-    int i;
-    char opcao_documento;
-
-    printf("Digite o nome do paciente: ");
-    scanf(" %[^\n]s", paciente.nome);
-    // Formatando nome
-    int tamanho_do_nome = strlen(paciente.nome);
-    paciente.nome[0] = toupper(paciente.nome[0]); // convertendo o primeiro caractere para maiúsculo
-    // Percorra os caracteres restantes e convertendo para minúsculo
-    for (i = 1; i < tamanho_do_nome; i++)
-    {
-        paciente.nome[i] = tolower(paciente.nome[i]);
-        // Verificando se o caractere anterior é um espaço em branco. Se sim, converte o caractere atual para maiúsculo
-        if (paciente.nome[i - 1] == ' ')
-        {
-            paciente.nome[i] = toupper(paciente.nome[i]);
+    for (i = 0; texto[i] != '\0'; i++) {
+        // Para cada caractere na string
+        char caractere = texto[i];
+        // Converte o caractere em seu valor binário usando operações de bits
+        for (j = 7; j >= 0; j--) {
+            // Testa o j-ésimo bit do caractere e coloca '0' ou '1' na string binária
+            binario[pos++] = (caractere & (1 << j)) ? '1' : '0';
         }
     }
+    binario[pos] = '\0'; // Adiciona o caractere nulo ao final da string binária
 
-    printf("Digite a enfermidade do paciente: ");
-    scanf(" %[^\n]s", paciente.enfermidade);
-
-    printf("Digite a receita para o paciente: ");
-    scanf(" %[^\n]s", paciente.receita);
-
-    printf("Internado? (1-sim) (0-nao): ");
-    scanf("%d", &paciente.internado);
-
-    // Pedir para o usuário escolher qual documento cadastrar
-    printf("Digite '1' para cadastrar o CPF ou '2' para cadastrar o RG: ");
-    scanf(" %c", &opcao_documento);
-
-    // Ler o documento escolhido pelo usuário
-    if (opcao_documento == '1')
-    {
-        printf("Digite o CPF do paciente (XXX.YYY.ZZZ-SS): ");
-        scanf(" %[^\n]s", paciente.documento.cpf);
-    }
-    else if (opcao_documento == '2')
-    {
-        printf("Digite o RG do paciente (XXX.YYY.ZZZ): ");
-        scanf(" %[^\n]s", paciente.documento.rg);
-    }
-    else
-    {
-        printf("Opcao invalida.\n");
-        exit(1);
-    }
-    return paciente;
+    return binario;
 }
 
-void lista_add(Listapacientes *l, Pacientes paciente)
-{
-    // Encontrar a posição correta para inserir o novo paciente
-    Listapacientes *p = l;
-    while (p->next != NULL && strcmp(p->next->pacientes->nome, paciente.nome) < 0)
-    {
-        p = p->next;
-    }
-    // Criar um novo nó para o novo paciente
-    Listapacientes *novo_no = (Listapacientes *)malloc(sizeof(Listapacientes));
-    if (novo_no == NULL)
-    {
-        printf("Erro: memoria insuficiente.\n");
+// Função para dobrar a string binária de acordo com a lógica especificada
+char *dobrarStringBinaria(const char *binario) {
+    int tamanho = strlen(binario);
+    int novoTamanho = (tamanho / 5 + (tamanho % 5 != 0)) * 5; // Ajusta o tamanho para ser múltiplo de 5
+    char *resultado = (char *)malloc(novoTamanho + 1); // +1 para o caractere nulo
+    if (resultado == NULL) {
+        fprintf(stderr, "Erro de alocação de memória.\n");
         exit(1);
     }
-    novo_no->pacientes = (Pacientes *)malloc(sizeof(Pacientes));
-    if (novo_no->pacientes == NULL)
-    {
-        printf("Erro: memoria insuficiente.\n");
-        exit(1);
-    }
-    *novo_no->pacientes = paciente;
 
-    // Inserir o novo paciente na posição correta
-    novo_no->next = p->next;
-    novo_no->prev = p;
-    if (p->next != NULL)
-    {
-        p->next->prev = novo_no;
+    int i, j;
+    char temp[6] = "00000"; // Inicializa um grupo de zeros
+    for (i = 0; i < novoTamanho; i += 5) {
+        for (j = 0; j < 5; j++) {
+            temp[j] = (i + j < tamanho) ? binario[i + j] : '0';
+        }
+        if (i > 0) {
+            for (j = 0; j < 5; j++) {
+                temp[j] = (temp[j] == binario[i + j]) ? '0' : '1';
+            }
+        }
+        resultado[i / 5] = temp[0];
     }
-    p->next = novo_no;
-    return p;
+    resultado[i / 5] = '\0'; // Adiciona o caractere nulo ao final
+
+    return resultado;
 }
 
-Hospital *cadastra_paciente(Hospital *h, int *qnt)
-{
-    if ((*qnt) == Leitos)
-    {
-        printf("Capacidade máxima atingida!\n");
-        exit(1);
-    }
-    // Adicionando o paciente na lista do hospital
-    Pacientes p = preenche_paciente();
-    lista_add(h->lista, p);
-    (*qnt)++;
-    (h->leitos)--;
-    printf("Paciente cadastrado com sucesso.\n\n");
-    return h;
+int main() {
+    const char *texto = "asdasd";
+    char *binario = stringParaBinario(texto);
+    char *resultado = dobrarStringBinaria(binario);
+
+    // Imprime o resultado
+    printf("String Binária: %s\n", binario);
+    printf("Resultado: %s\n", resultado);
+
+    // Libera a memória alocada
+    free(binario);
+    free(resultado);
+
+    return 0;
 }

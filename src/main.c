@@ -1,8 +1,16 @@
-#include "sistema.c"
+#include "telefone.c"
+
+#define MAX 32
 
 int main(void)
 {
     char opc, volta;
+    Telefone *contatos = (Telefone*) malloc(MAX * sizeof(Telefone));
+    if (contatos == NULL)
+    {
+        printRED("[ERRO]");
+        exit(1);
+    }
     while (opc != OPCAO8)
     {
         menu();
