@@ -86,6 +86,64 @@ void corrige_nome(char nome[])
     }
 }
 
+int verificaemail(const char email[])
+{
+    int i, at_count = 0, dot_count = 0;
+    int len = strlen(email);
+    for (i = 0; i < len; i++)
+    {
+        if (email[i] == '@')
+            at_count++;
+        else if (email[i] == '.')
+            dot_count++;
+    }
+    // Verificar se há um único '@' e pelo menos um '.' após o '@'
+    if (at_count == 1 && dot_count >= 1)
+    {
+        // Verificar se termina com ".com"
+        if (strcmp(email + len - 4, ".com") == 0)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int verificanumerotelefone(const char numero[])
+{
+    int len = strlen(numero);
+    int possuiNove = 0; // Variável para verificar se o número contém o dígito "9"
+    // Verificar se o número de telefone tem exatamente 11 dígitos numéricos
+    if (len != 11)
+    {
+        return 0;
+    }
+    // Verificar se todos os caracteres são dígitos numéricos
+    for (int i = 0; i < len; i++)
+    {
+        if (!isdigit(numero[i]))
+            return 0;
+        // Verificar se o número contém o dígito "9"
+        if (numero[i] == '9')
+            possuiNove = 1;
+    }
+    // Verificar se o número contém pelo menos um "9"
+    if (!possuiNove)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+void formatanumerotelefone(char numero[])
+{
+    int len = strlen(numero);
+    char numeroFormatado[20]; // Usado para armazenar o número formatado temporariamente
+    sprintf(numeroFormatado, "(%c%c) %c%c%c%c%c-%c%c%c%c", numero[0], numero[1], numero[2], numero[3], numero[4], numero[5], numero[6], numero[7], numero[8], numero[9], numero[10]);
+    // Copiar o número formatado de volta para o número original
+    strcpy(numero, numeroFormatado);
+}
+
 void menu(void)
 {
     printf("Menu:\n");
@@ -101,14 +159,17 @@ void menu(void)
     printf("========================================\n");
 }
 
-void printGREEN(char *text){
-    printf("%s%s%s",GREEN,text,WHITE);
+void printGREEN(char *text)
+{
+    printf("%s%s%s", GREEN, text, WHITE);
 }
 
-void printYELLOW(char *text){
-    printf("%s%s%s",YELLOW,text,WHITE);
+void printYELLOW(char *text)
+{
+    printf("%s%s%s", YELLOW, text, WHITE);
 }
 
-void printRED(char *text){
-    printf("%s%s%s",RED,text,WHITE);
+void printRED(char *text)
+{
+    printf("%s%s%s", RED, text, WHITE);
 }

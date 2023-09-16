@@ -25,3 +25,12 @@ void printYELLOW(char *text);
 
 // Imprime em vermelho
 void printRED(char *text);
+
+// verificação do numero
+int verificanumerotelefone(const char numero[]);
+
+// verificação do email
+int verificaemail(const char email[]);
+
+// formatação do numero
+void formatanumerotelefone(char numero[]);
