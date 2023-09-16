@@ -8,17 +8,16 @@ struct telefone
     int numero;
 };
 
-
-char *stringParaBinario(const char *texto)
+char *StringParaBinario(const char *texto)
 {
     int i, j;
-    int pos = 0; // Variável de posição 
+    int pos = 0; // Variável de posição
     // Calcula o tamanho necessário
     int tamanhoBinario = 8 * strlen(texto) + 1;
     char *binario = (char *)malloc(tamanhoBinario);
     if (binario == NULL)
     {
-        fprintf(stderr, "Erro de alocação de memória.\n");
+        printRED("Erro de alocação de memória.");
         exit(1);
     }
     for (i = 0; texto[i] != '\0'; i++)
@@ -61,3 +60,90 @@ char *stringParaBinario(const char *texto)
     }
     return binario;
 }
+
+char *SomaDiferente(char *dobra, char *naodobra)
+{
+    int tamanho = 5;
+    int i = 0, j = tamanho - 1;
+    char *resultado = (char *)malloc((tamanho + 1) * sizeof(char));
+    if (resultado == NULL)
+    {
+        printRED("Erro de alocação de memória.");
+        exit(1);
+    }
+    while (i < tamanho)
+    {
+        if (dobra[j] != naodobra[i])
+            resultado[i] = '1';
+        else
+            resultado[i] = '0';
+        i++;
+        j--;
+    }
+    return resultado;
+}
+
+char *Dobra(char *bin)
+{
+    int tamanhoDaString = strlen(bin);
+    int tamanhoDoSegmento = 5;
+    int i = 0;
+    char segmento[tamanhoDoSegmento + 1];
+    char *resultado = (char *)malloc(5 * sizeof(char));
+    if (resultado == NULL)
+    {
+        printRED("Erro de alocação de memória.");
+        exit(1);
+    }
+    strncpy(segmento, bin + i, tamanhoDoSegmento);
+    strncpy(resultado, bin + i + tamanhoDoSegmento, tamanhoDoSegmento);
+    resultado = SomaDiferente(segmento, resultado);
+    for (i = tamanhoDoSegmento * 2; i < tamanhoDaString; i += tamanhoDoSegmento)
+    {
+        strncpy(segmento, bin + i, tamanhoDoSegmento);
+        resultado = SomaDiferente(resultado, segmento);
+    }
+    return resultado;
+}
+
+int BinarioParaInteiro(char *binario)
+{
+    int tamanho = strlen(binario);
+    int resultado = 0;
+
+    for (int i = tamanho - 1; i >= 0; i--)
+    {
+        if (binario[i] == '1')
+        {
+            resultado += (1 << (tamanho - 1 - i));
+        }
+    }
+    free(binario);
+    return resultado;
+}
+
+int main()
+{
+    // Exemplo de uma string
+    const char *texto = "abcasdassdsaffdsfds";
+
+    // Chame a função StringParaBinario e imprima o resultado
+    char *binario = StringParaBinario(texto);
+    printf("Texto em binário: %s\n", binario);
+
+    // Chame a função Dobra e imprima o resultado
+    char *resultado = Dobra(binario);
+    printf("Resultado da Dobra: %s\n", resultado);
+
+    int inteiro = BinarioParaInteiro(resultado);
+    printf("Resultado inteiro: %d\n", inteiro);
+
+    return 0;
+}
+
+/*
+00000,10000,01010,00010
+00000 + 10000 = 10000
+00001 + 01010 = 01011
+11010 + 00010 = 11000
+*/
