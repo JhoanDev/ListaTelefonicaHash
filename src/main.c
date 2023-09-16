@@ -22,14 +22,9 @@ int main(void)
             printYELLOW("Voce quer mesmo cadastrar um contato? 1-(Sim) 2-(Nao)\n");
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
-            {
-                aux = preenchedados();
-                cadastra(agenda,aux);
-           }
+                cadastra(agenda);
             else
-            {
                 break;
-            }
             break;
         case OPCAO2:
             printYELLOW("Voce quer mesmo listar os contatos? 1-(Sim) 2-(Nao)\n");

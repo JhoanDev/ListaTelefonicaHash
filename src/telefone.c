@@ -26,10 +26,10 @@ Telefone preenchedados()
     while (!verificanumerotelefone(novo.numero))
     {
         printRED("Por favor insira um telefone valido, ex:(84923435465)\n");
-        printYELLOW("Insira o email: ");
-        scanf(" %[^\n]s", novo.email);
+        printYELLOW("Insira o numero: ");
+        scanf(" %[^\n]s", novo.numero);
     }
-    
+    formatanumerotelefone(novo.numero);
     return novo;
 }
 
@@ -39,4 +39,7 @@ void cadastra(Telefone *agenda)
     int codigohash = Dobra(contato.email);
     printf("Codigo %d\n\n", codigohash);
     agenda[codigohash] = contato;
+/*  printf("Nome: %s\n", agenda[codigohash].nome);
+    printf("email: %s\n", agenda[codigohash].email);
+    printf("Numero: %s\n", agenda[codigohash].numero); */
 }
