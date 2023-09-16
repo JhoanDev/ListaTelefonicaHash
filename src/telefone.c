@@ -33,13 +33,25 @@ Telefone preenchedados()
     return novo;
 }
 
+
+int colisao(Telefone agenda[], int indice) {
+    return agenda[indice].nome[0] != '\0'; // Se o nome não estiver vazio, o índice está ocupado
+}
+
 void cadastra(Telefone *agenda)
 {
     Telefone contato = preenchedados();
     int codigohash = Dobra(contato.email);
     printf("Codigo %d\n\n", codigohash);
-    agenda[codigohash] = contato;
-/*  printf("Nome: %s\n", agenda[codigohash].nome);
+    if (colisao(agenda, codigohash)) {
+        char text[70];
+        sprintf(text,"O indice %d esta ocupado. Nao foi possível adicionar o contato.\n", codigohash);
+        printRED(text);
+    } else {
+        agenda[codigohash] = contato;
+        printGREEN("Contato adicionado com sucesso.\n");
+    }
+/*     printf("Nome: %s\n", agenda[codigohash].nome);
     printf("email: %s\n", agenda[codigohash].email);
     printf("Numero: %s\n", agenda[codigohash].numero); */
 }
