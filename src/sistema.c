@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include "sistema.h"
 
 #define RED "\x1B[31m"

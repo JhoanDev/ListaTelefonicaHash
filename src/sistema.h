@@ -1,4 +1,9 @@
-// funções para tratativas e falhas
+// Módulo: funções para tratativas e falhas
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 // Lê e descarta caracteres encontrados na entrada
 void LimpaBuffer(void);
