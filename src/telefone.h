@@ -13,4 +13,7 @@ void cadastra(Telefone *agenda);
 // verifica se ha colisão
 int colisao(Telefone *agenda, int indice);
 
+// compara emails
+int compara(Telefone *agenda, int atual, int buscado);
+
 #endif // TELEFONE_H

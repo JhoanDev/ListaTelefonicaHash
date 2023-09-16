@@ -101,7 +101,6 @@ char *SomaDiferente(char *dobra, char *naodobra)
     return resultado;
 }
 
-
 int BinarioParaInteiro(char *binario)
 {
     int tamanho = strlen(binario);
@@ -118,13 +117,28 @@ int BinarioParaInteiro(char *binario)
     return resultado;
 }
 
-int SondagemLinear(Telefone *agenda, int indice){
+int SondagemLinear(Telefone *agenda, int indice)
+{
     int novoindice = indice;
     int i = 1;
-    while (colisao(agenda,novoindice)) {
+    while (colisao(agenda, novoindice))
+    {
         novoindice = (indice + i) % 32; // 32 é o tamanho da tabela hash
         i++;
     }
     return novoindice;
 }
 
+int SondagemLinearBusca(Telefone *agenda, int indice)
+{
+    int indicebuscado = indice;
+    int i = 1;
+    while (compara(agenda, indicebuscado, indice))
+    {
+        indicebuscado = (indice + i) % 32; // 32 é o tamanho da tabela hash
+        if (i >= 32)
+            return -1;
+        i++;
+    }
+    return indicebuscado;
+}

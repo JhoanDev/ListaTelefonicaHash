@@ -32,9 +32,14 @@ Telefone preenchedados()
     return novo;
 }
 
-
-int colisao(Telefone *agenda, int indice) {
+int colisao(Telefone *agenda, int indice)
+{
     return agenda[indice].nome[0] != '\0'; // Se o nome não estiver vazio, o índice está ocupado
+}
+
+int compara(Telefone *agenda, int atual, int buscado)
+{
+    return strcmp(agenda[atual].email, agenda[buscado].email) == 0;
 }
 
 void cadastra(Telefone *agenda)
@@ -42,29 +47,47 @@ void cadastra(Telefone *agenda)
     Telefone contato = preenchedados();
     int codigohash = Dobra(contato.email);
     printf("Codigo %d\n\n", codigohash);
-    if (colisao(agenda, codigohash)) {
-        int novoindice = SondagemLinear(agenda,codigohash);
+    if (colisao(agenda, codigohash))
+    {
+        int novoindice = SondagemLinear(agenda, codigohash);
         agenda[novoindice] = contato;
         printGREEN("Contato adicionado com sucesso.\n");
-    } else {
+    }
+    else
+    {
         agenda[codigohash] = contato;
         printGREEN("Contato adicionado com sucesso.\n");
     }
-    printf("Nome: %s\n", agenda[codigohash+1].nome);
-    printf("email: %s\n", agenda[codigohash+1].email);
-    printf("Numero: %s\n", agenda[codigohash+1].numero);
 }
 
-void listarcontatos(Telefone *agenda) {
+void listarcontatos(Telefone *agenda)
+{
     printGREEN("Lista de Contatos:\n\n");
     int qnt = 1;
-    for (int i = 0; i < 32; i++) {
-        if (agenda[i].nome[0] != '\0') {
-            printf("Contato [%d]\n",qnt++);
+    for (int i = 0; i < 32; i++)
+    {
+        if (agenda[i].nome[0] != '\0')
+        {
+            printf("Contato [%d]\n", qnt++);
             printf("Nome: %s\n", agenda[i].nome);
             printf("Email: %s\n", agenda[i].email);
             printf("Número: %s\n", agenda[i].numero);
             printf("\n");
         }
     }
+}
+
+int buscarcontato(Telefone *agenda)
+{
+    char email[50];
+    printYELLOW("Insira o email do contato que deseja buscar: ");
+    scanf(" %[^\n]s", email);
+    while (!verificaemail(email))
+    {
+        printRED("Por favor insira um email valido, ex:(nomesilva@hotgmail.com)\n");
+        printYELLOW("Insira o email: ");
+        scanf(" %[^\n]s", email);
+    }
+    int indice = SondagemLinearBusca(agenda, Dobra(email));
+    return indice;
 }

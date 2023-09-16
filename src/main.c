@@ -50,10 +50,27 @@ int main(void)
                 break;
             break;
         case OPCAO3:
+            if (qntcontatos == 0)
+            {
+                printRED("Sua agenda esta vazia!\n\n");
+                break;
+            }
             printYELLOW("Voce quer mesmo buscar um contato? 1-(Sim) 2-(Nao)\n");
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
+                int indice = buscarcontato(agenda);
+                if (indice == -1)
+                {
+                    printRED("Contato nao esta na agenda!\n\n");
+                }
+                else
+                {
+                    printGREEN("Contato encontrado!!\n\n");
+                    printf("Nome: %s\n", agenda[indice].nome);
+                    printf("email: %s\n", agenda[indice].email);
+                    printf("Numero: %s\n", agenda[indice].numero);
+                }
             }
             else
                 break;
@@ -91,7 +108,7 @@ int main(void)
             }
             break;
         case OPCAO7:
-            printYELLOW("Voce quer mesmo editar um paciente? 1-(Sim) 2-(Nao)\n");
+            printYELLOW("Voce quer mesmo editar um contato? 1-(Sim) 2-(Nao)\n");
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
