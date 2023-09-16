@@ -55,3 +55,16 @@ void cadastra(Telefone *agenda)
     printf("Numero: %s\n", agenda[codigohash+1].numero);
 }
 
+void listarcontatos(Telefone *agenda) {
+    printGREEN("Lista de Contatos:\n\n");
+    int qnt = 1;
+    for (int i = 0; i < 32; i++) {
+        if (agenda[i].nome[0] != '\0') {
+            printf("Contato [%d]\n",qnt++);
+            printf("Nome: %s\n", agenda[i].nome);
+            printf("Email: %s\n", agenda[i].email);
+            printf("Número: %s\n", agenda[i].numero);
+            printf("\n");
+        }
+    }
+}

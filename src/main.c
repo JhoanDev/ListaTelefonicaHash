@@ -21,7 +21,7 @@ int main(void)
         case OPCAO1:
             if (qntcontatos == 32)
             {
-                printRED("Sua agenda esta cheia!");
+                printRED("Sua agenda esta cheia!\n\n");
                 break;
             }
             printYELLOW("Voce quer mesmo cadastrar um contato? 1-(Sim) 2-(Nao)\n");
@@ -35,15 +35,19 @@ int main(void)
                 break;
             break;
         case OPCAO2:
+            if (qntcontatos == 0)
+            {
+                printRED("Sua agenda esta vazia!\n\n");
+                break;
+            }
             printYELLOW("Voce quer mesmo listar os contatos? 1-(Sim) 2-(Nao)\n");
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
+                listarcontatos(agenda);
             }
             else
-
                 break;
-
             break;
         case OPCAO3:
             printYELLOW("Voce quer mesmo buscar um contato? 1-(Sim) 2-(Nao)\n");
