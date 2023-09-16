@@ -5,8 +5,8 @@
 int main(void)
 {
     char opc, volta;
-    Telefone *agenda = (Telefone*) malloc(MAX * sizeof(Telefone));
-    Telefone aux;
+    Telefone *agenda = (Telefone *)malloc(MAX * sizeof(Telefone));
+    int qntcontatos = 0;
     if (agenda == NULL)
     {
         printRED("[ERRO]");
@@ -19,10 +19,18 @@ int main(void)
         switch (opc)
         {
         case OPCAO1:
+            if (qntcontatos == 32)
+            {
+                printRED("Sua agenda esta cheia!");
+                break;
+            }
             printYELLOW("Voce quer mesmo cadastrar um contato? 1-(Sim) 2-(Nao)\n");
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
+            {
                 cadastra(agenda);
+                qntcontatos++;
+            }
             else
                 break;
             break;

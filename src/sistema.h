@@ -1,3 +1,5 @@
+#ifndef SISTEMA_H
+#define SISTEMA_H
 // Módulo: funções para tratativas e falhas
 #include <stdio.h>
 #include <stdarg.h>
@@ -34,3 +36,5 @@ int verificaemail(const char email[]);
 
 // formatação do numero
 void formatanumerotelefone(char numero[]);
+
+#endif // SISTEMA_H

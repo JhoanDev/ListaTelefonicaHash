@@ -117,3 +117,14 @@ int BinarioParaInteiro(char *binario)
     free(binario);
     return resultado;
 }
+
+int SondagemLinear(Telefone *agenda, int indice){
+    int novoindice = indice;
+    int i = 1;
+    while (colisao(agenda,novoindice)) {
+        novoindice = (indice + i) % 32; // 32 é o tamanho da tabela hash
+        i++;
+    }
+    return novoindice;
+}
+

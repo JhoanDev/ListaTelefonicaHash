@@ -1,4 +1,8 @@
+#ifndef HASH_H
+#define HASH_H
+
 //Módulo: Hash dobra
+#include "telefone.h"
 
 // Transforma a string em binaria
 char *StringParaBinario(const char *texto);
@@ -11,3 +15,8 @@ int Dobra(char *bin);
 
 // transforma o numero em binario para inteiro
 int BinarioParaInteiro(char *binario);
+
+// Algoritmo para tratamento de colisões
+int SondagemLinear(Telefone *agenda, int indice);
+
+#endif // HASH_H

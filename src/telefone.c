@@ -1,5 +1,4 @@
 #include "hashdobra.c"
-#include "telefone.h"
 struct telefone
 {
     char nome[50];
@@ -34,7 +33,7 @@ Telefone preenchedados()
 }
 
 
-int colisao(Telefone agenda[], int indice) {
+int colisao(Telefone *agenda, int indice) {
     return agenda[indice].nome[0] != '\0'; // Se o nome não estiver vazio, o índice está ocupado
 }
 
@@ -44,14 +43,15 @@ void cadastra(Telefone *agenda)
     int codigohash = Dobra(contato.email);
     printf("Codigo %d\n\n", codigohash);
     if (colisao(agenda, codigohash)) {
-        char text[70];
-        sprintf(text,"O indice %d esta ocupado. Nao foi possível adicionar o contato.\n", codigohash);
-        printRED(text);
+        int novoindice = SondagemLinear(agenda,codigohash);
+        agenda[novoindice] = contato;
+        printGREEN("Contato adicionado com sucesso.\n");
     } else {
         agenda[codigohash] = contato;
         printGREEN("Contato adicionado com sucesso.\n");
     }
-/*     printf("Nome: %s\n", agenda[codigohash].nome);
-    printf("email: %s\n", agenda[codigohash].email);
-    printf("Numero: %s\n", agenda[codigohash].numero); */
+    printf("Nome: %s\n", agenda[codigohash+1].nome);
+    printf("email: %s\n", agenda[codigohash+1].email);
+    printf("Numero: %s\n", agenda[codigohash+1].numero);
 }
+
