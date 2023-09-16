@@ -158,3 +158,34 @@ void exportarcontatos(Telefone *agenda, char *caminho)
 
     fclose(exporta);
 }
+
+void geracontatos(char *caminho)
+{
+    printYELLOW("Insira o nome que deseja em seu arquivo: ");
+    char nomearq[20];
+    scanf(" %[^\n]s", nomearq);
+    // Adicione a extensão .txt ao nome do arquivo
+    char nomecomtxt[100]; // Tamanho suficiente para acomodar o nome e a extensão .txt
+    sprintf(nomecomtxt, "%s%s.txt", caminho, nomearq);
+    FILE *exporta = fopen(nomecomtxt, "w");
+    if (exporta == NULL)
+    {
+        printRED("Erro ao criar o arquivo.");
+        exit(1);
+    }
+
+    // Escreve os contatos no arquivo
+    for (int i = 1; i <= 32; i++)
+    {
+        fprintf(exporta, "Nome: Contato %d\n", i);
+        fprintf(exporta, "Email: contato%d@gmail.com\n", i);
+        fprintf(exporta, "Número: (%d) %d%d%d%d%d-%d%d%d%d\n",
+                (i % 10) + 1,                                     // DDD (de 1 a 10)
+                (i % 10), (i % 10), (i % 10), (i % 10), (i % 10), // Primeira parte do número
+                (i % 10), (i % 10), (i % 10), (i % 10)            // Segunda parte do número
+        );
+
+        fprintf(exporta, "\n"); // Linha em branco entre os contatos
+    }
+    fclose(exporta);
+}
