@@ -6,6 +6,7 @@ int main(void)
 {
     char opc, volta;
     Telefone *agenda = (Telefone *)malloc(MAX * sizeof(Telefone));
+    char *caminho = "/home/jhoan/Desktop/Vscode/Github/ListaTelefonicaHash/data/"; //varia de pc para pc
     int qntcontatos = 0;
     if (agenda == NULL)
     {
@@ -28,7 +29,8 @@ int main(void)
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
-                cadastra(agenda);
+                Telefone contato = preenchedados();
+                cadastra(agenda,contato);
                 qntcontatos++;
             }
             else
@@ -80,6 +82,7 @@ int main(void)
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
+                exportarcontatos(agenda,caminho);
             }
             else
                 break;
@@ -90,6 +93,7 @@ int main(void)
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
+                qntcontatos = importarcontatos(agenda,caminho);
             }
             else
             {

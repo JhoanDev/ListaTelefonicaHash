@@ -58,7 +58,7 @@ char *StringParaBinario(const char *texto)
         char *novoBinario = (char *)malloc((novoTamanho + 1) * sizeof(char));
         if (novoBinario == NULL)
         {
-            fprintf(stderr, "Erro de alocação de memória.\n");
+            printRED("Erro de alocação de memória.");
             exit(1);
         }
         // Preencha com zeros à esquerda

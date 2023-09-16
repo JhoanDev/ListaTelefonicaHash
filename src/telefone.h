@@ -8,7 +8,7 @@ typedef struct telefone Telefone;
 Telefone preenchedados();
 
 // cadastrar um novo contato na agenda
-void cadastra(Telefone *agenda);
+void cadastra(Telefone *agenda,Telefone contato);
 
 // verifica se ha colisão
 int colisao(Telefone *agenda, int indice);
