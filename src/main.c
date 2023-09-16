@@ -5,8 +5,9 @@
 int main(void)
 {
     char opc, volta;
-    Telefone *contatos = (Telefone*) malloc(MAX * sizeof(Telefone));
-    if (contatos == NULL)
+    Telefone *agenda = (Telefone*) malloc(MAX * sizeof(Telefone));
+    Telefone aux;
+    if (agenda == NULL)
     {
         printRED("[ERRO]");
         exit(1);
@@ -19,10 +20,12 @@ int main(void)
         {
         case OPCAO1:
             printYELLOW("Voce quer mesmo cadastrar um contato? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1, '2');
+            volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
-            }
+                aux = preenchedados();
+                cadastra(agenda,aux);
+           }
             else
             {
                 break;
@@ -30,7 +33,7 @@ int main(void)
             break;
         case OPCAO2:
             printYELLOW("Voce quer mesmo listar os contatos? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1, '2');
+            volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
             }
@@ -41,7 +44,7 @@ int main(void)
             break;
         case OPCAO3:
             printYELLOW("Voce quer mesmo buscar um contato? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1, '2');
+            volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
             }
@@ -50,7 +53,7 @@ int main(void)
             break;
         case OPCAO4:
             printYELLOW("Voce quer mesmo exportar contatos? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1, '2');
+            volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
             }
@@ -60,7 +63,7 @@ int main(void)
             break;
         case OPCAO5:
             printYELLOW("Voce quer mesmo importar contatos? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1, '2');
+            volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
             }
@@ -71,7 +74,7 @@ int main(void)
             break;
         case OPCAO6:
             printYELLOW("Voce quer mesmo apagar um contato? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1, '2');
+            volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
             }
@@ -82,7 +85,7 @@ int main(void)
             break;
         case OPCAO7:
             printYELLOW("Voce quer mesmo editar um paciente? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1, '2');
+            volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
             }
@@ -93,7 +96,7 @@ int main(void)
             break;
         case OPCAO8:
             printYELLOW("Voce quer mesmo sair do programa? 1-(Sim) 2-(Nao)\n");
-            volta = LeOpcao(OPCAO1, '2');
+            volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
                 printGREEN("Obrigado por utilizar meu programa!\n");

@@ -9,7 +9,7 @@
 void LimpaBuffer(void);
 
 // Lê e valida a opção digitada pelo usuário
-int LeOpcao(int menorValor, int maiorValor);
+char LeOpcao(char menorValor, char maiorValor);
 
 // corrige o nome
 void corrige_nome(char nome[]);

@@ -1,7 +1,7 @@
 #include "sistema.c"
 #include "hashdobra.h"
 
-char *Dobra(char *texto)
+int Dobra(char *texto)
 {
     char *bin = StringParaBinario(texto);
     int tamanhoDaString = strlen(bin);
@@ -22,7 +22,8 @@ char *Dobra(char *texto)
         strncpy(segmento, bin + i, tamanhoDoSegmento);
         resultado = SomaDiferente(resultado, segmento);
     }
-    return resultado;
+    int hash = BinarioParaInteiro(resultado);
+    return hash;
 }
 
 char *StringParaBinario(const char *texto)

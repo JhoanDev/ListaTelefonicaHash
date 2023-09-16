@@ -7,7 +7,7 @@ char *StringParaBinario(const char *texto);
 char *SomaDiferente(char *dobra, char *naodobra);
 
 // função hash da dobra
-char *Dobra(char *bin);
+int Dobra(char *bin);
 
 // transforma o numero em binario para inteiro
 int BinarioParaInteiro(char *binario);

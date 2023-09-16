@@ -3,7 +3,7 @@
 #define RED "\x1B[31m"
 #define GREEN "\x1B[32m"
 #define YELLOW "\x1B[33m"
-#define WHITE "\x1B[0m\n"
+#define WHITE "\x1B[0m"
 
 #define N_OPCOES 8
 
@@ -25,9 +25,9 @@ void LimpaBuffer(void)
     } while ((valorLido != '\n') && (valorLido != EOF));
 }
 
-int LeOpcao(int menorValor, int maiorValor)
+char LeOpcao(char menorValor, char maiorValor)
 {
-    int op;
+    char op;
     char entrada[100];
     char text[50];
     while (1)
