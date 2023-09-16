@@ -87,7 +87,8 @@ int buscarcontato(Telefone *agenda)
         printYELLOW("Insira o email: ");
         scanf(" %[^\n]s", email);
     }
-    int indice = SondagemLinearBusca(agenda, Dobra(email));
+    int hash =  Dobra(email);
+    int indice = SondagemLinearBusca(agenda,hash);
     return indice;
 }
 

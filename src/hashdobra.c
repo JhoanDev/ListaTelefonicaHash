@@ -133,11 +133,11 @@ int SondagemLinearBusca(Telefone *agenda, int indice)
 {
     int indicebuscado = indice;
     int i = 1;
-    while (compara(agenda, indicebuscado, indice))
+    while (!compara(agenda, indicebuscado, indice))
     {
         indicebuscado = (indice + i) % 32; // 32 é o tamanho da tabela hash
         if (i >= 32)
-            return -1;
+            return -1; // Não encontrou o índice após percorrer toda a tabela
         i++;
     }
     return indicebuscado;

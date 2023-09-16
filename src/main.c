@@ -8,7 +8,6 @@ int main(void)
     Telefone *agenda = (Telefone *)malloc(MAX * sizeof(Telefone));
     char *caminho = "/home/jhoan/Desktop/Vscode/Github/ListaTelefonicaHash/data/"; //varia de pc para pc
     int qntcontatos = 0;
-    geracontatos(caminho);
     if (agenda == NULL)
     {
         printRED("[ERRO]");
