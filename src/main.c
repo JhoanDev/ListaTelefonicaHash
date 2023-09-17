@@ -4,13 +4,13 @@ int main(void)
 {
     char opc, volta;
     Telefone *agenda = (Telefone *)malloc(MAX * sizeof(Telefone));
-    char *caminho = "../data/";
-    int qntcontatos = 0;
     if (agenda == NULL)
     {
         printRED("[ERRO]");
         exit(1);
     }
+    char *caminho = "../data/";
+    int qntcontatos = 0;
     while (opc != OPCAO8)
     {
         menu();
@@ -28,7 +28,8 @@ int main(void)
             if (volta == OPCAO1)
             {
                 Telefone contato = preenchedados();
-                cadastra(agenda,contato);
+                cadastra(agenda, contato);
+                printGREEN("Contato adicionado com sucesso.\n");
                 qntcontatos++;
             }
             else
@@ -80,7 +81,7 @@ int main(void)
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
-                exportarcontatos(agenda,caminho);
+                exportarcontatos(agenda, caminho);
             }
             else
                 break;
@@ -92,7 +93,8 @@ int main(void)
             if (volta == OPCAO1)
             {
                 limparagenda(agenda);
-                qntcontatos = importarcontatos(agenda,caminho);
+                qntcontatos = importarcontatos(agenda, caminho);
+
             }
             else
             {
@@ -105,6 +107,7 @@ int main(void)
             if (volta == OPCAO1)
             {
                 apagacontato(agenda);
+                agenda = reorganizahash(agenda);
             }
             else
             {

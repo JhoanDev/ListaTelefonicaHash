@@ -50,14 +50,11 @@ void cadastra(Telefone *agenda, Telefone contato)
     {
         int novoindice = SondagemLinear(agenda, codigohash);
         agenda[novoindice] = contato;
-        printGREEN("Contato adicionado com sucesso.");
     }
     else
     {
         agenda[codigohash] = contato;
-        printGREEN("Contato adicionado com sucesso.");
     }
-    printf("\n");
 }
 
 void listarcontatos(Telefone *agenda)
@@ -123,6 +120,7 @@ int importarcontatos(Telefone *agenda, char *caminho)
         cadastra(agenda, contato);
         i++;
     }
+    printGREEN("Contatos importados com sucesso.\n");
     fclose(importa);
     return i;
 }
@@ -212,21 +210,24 @@ void apagacontato(Telefone *agenda)
     }
 }
 
-Telefone * reorganizahash(Telefone *agenda, Telefone *organizada)
+Telefone * reorganizahash(Telefone *agenda)
 {
-
+    Telefone *organizada = (Telefone *)malloc(MAX * sizeof(Telefone));
+    if (organizada == NULL)
+    {
+        printRED("[ERRO]");
+        exit(1);
+    }
     int qnt = 1;
     for (int i = 0; i < 32; i++)
     {
         if (verificaemail(agenda[i].email))
         {
-            printf("Contato [%d]\n", qnt++);
-            printf("Nome: %s\n", agenda[i].nome);
-            printf("Email: %s\n", agenda[i].email);
-            printf("Número: %s\n", agenda[i].numero);
-            printf("\n");
+            cadastra(organizada,agenda[i]);
         }
     }
+    free(agenda);
+    return organizada;
 }
 
 void limparagenda(Telefone *agenda)
