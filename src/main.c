@@ -44,9 +44,7 @@ int main(void)
             printYELLOW("Voce quer mesmo listar os contatos? 1-(Sim) 2-(Nao)\n");
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
-            {
                 listarcontatos(agenda);
-            }
             else
                 break;
             break;
@@ -62,9 +60,7 @@ int main(void)
             {
                 int indice = buscarcontato(agenda);
                 if (indice == -1)
-                {
                     printRED("Contato nao esta na agenda!\n\n");
-                }
                 else
                 {
                     printGREEN("Contato encontrado!!\n\n");
@@ -80,12 +76,9 @@ int main(void)
             printYELLOW("Voce quer mesmo exportar contatos? 1-(Sim) 2-(Nao)\n");
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
-            {
                 exportarcontatos(agenda, caminho);
-            }
             else
                 break;
-
             break;
         case OPCAO5:
             printYELLOW("Voce quer mesmo importar contatos? 1-(Sim) 2-(Nao)\n");
@@ -94,12 +87,9 @@ int main(void)
             {
                 limparagenda(agenda);
                 qntcontatos = importarcontatos(agenda, caminho);
-
             }
             else
-            {
                 break;
-            }
             break;
         case OPCAO6:
             printYELLOW("Voce quer mesmo apagar um contato? 1-(Sim) 2-(Nao)\n");
@@ -110,28 +100,21 @@ int main(void)
                 agenda = reorganizahash(agenda);
             }
             else
-            {
                 break;
-            }
             break;
         case OPCAO7:
             printYELLOW("Voce quer mesmo editar um contato? 1-(Sim) 2-(Nao)\n");
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
-            {
-            }
+                editarcontato(agenda);
             else
-            {
                 break;
-            }
             break;
         case OPCAO8:
             printYELLOW("Voce quer mesmo sair do programa? 1-(Sim) 2-(Nao)\n");
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
-            {
                 printGREEN("Obrigado por utilizar meu programa!\n");
-            }
             else
                 opc = 0;
             break;
