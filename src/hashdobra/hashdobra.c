@@ -1,7 +1,7 @@
-#include "sistema.c"
 #include "hashdobra.h"
+#include "../system/sistema.c"
 
-char *Dobra(char *texto)
+int Dobra(char *texto)
 {
     char *bin = StringParaBinario(texto);
     int tamanhoDaString = strlen(bin);
@@ -22,7 +22,8 @@ char *Dobra(char *texto)
         strncpy(segmento, bin + i, tamanhoDoSegmento);
         resultado = SomaDiferente(resultado, segmento);
     }
-    return resultado;
+    int hash = BinarioParaInteiro(resultado);
+    return hash;
 }
 
 char *StringParaBinario(const char *texto)
@@ -52,28 +53,26 @@ char *StringParaBinario(const char *texto)
     int diferenca = strlen(binario) % 5;
     if (diferenca != 0)
     {
-        // Crie uma nova string com zeros à esquerda
         int novoTamanho = strlen(binario) + (5 - diferenca);
         char *novoBinario = (char *)malloc((novoTamanho + 1) * sizeof(char));
         if (novoBinario == NULL)
         {
-            fprintf(stderr, "Erro de alocação de memória.\n");
+            printRED("Erro de alocação de memória.");
             exit(1);
         }
-        // Preencha com zeros à esquerda
+        // Preenchendo com zeros à esquerda
         for (i = 0; i < 5 - diferenca; i++)
         {
             novoBinario[i] = '0';
         }
-        // Copie os dígitos binários originais
+        // Copiando dígitos binários originais
         for (i = 5 - diferenca; i < novoTamanho; i++)
         {
             novoBinario[i] = binario[i - (5 - diferenca)];
         }
-        novoBinario[novoTamanho] = '\0'; // Adicione o caractere nulo
-
-        free(binario);         // Libere a memória da string binária original
-        binario = novoBinario; // Atualize o ponteiro com a nova string
+        novoBinario[novoTamanho] = '\0';
+        free(binario);
+        binario = novoBinario;
     }
     return binario;
 }
@@ -100,7 +99,6 @@ char *SomaDiferente(char *dobra, char *naodobra)
     return resultado;
 }
 
-
 int BinarioParaInteiro(char *binario)
 {
     int tamanho = strlen(binario);
@@ -115,4 +113,30 @@ int BinarioParaInteiro(char *binario)
     }
     free(binario);
     return resultado;
+}
+
+int SondagemLinear(Telefone *agenda, int indice)
+{
+    int novoindice = indice;
+    int i = 1;
+    while (colisao(agenda, novoindice))
+    {
+        novoindice = (indice + i) % 32; // 32 é o tamanho da tabela hash
+        i++;
+    }
+    return novoindice;
+}
+
+int SondagemLinearBusca(Telefone *agenda, int indice, char email[])
+{
+    int indicebuscado = indice;
+    int i = 1;
+    while (!compara(agenda, indicebuscado, email))
+    {
+        indicebuscado = (indice + i) % 32; // 32 é o tamanho da tabela hash
+        if (i >= 32)
+            return -1; // Não encontrou o índice após percorrer toda a tabela
+        i++;
+    }
+    return indicebuscado;
 }
