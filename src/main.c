@@ -132,12 +132,10 @@ int main(void)
             else
                 opc = 0;
             break;
-            break;
         default:
             break;
         }
     }
-
     free(agenda);
     return 0;
 }

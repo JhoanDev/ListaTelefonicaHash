@@ -129,11 +129,11 @@ int SondagemLinear(Telefone *agenda, int indice)
     return novoindice;
 }
 
-int SondagemLinearBusca(Telefone *agenda, int indice)
+int SondagemLinearBusca(Telefone *agenda, int indice, char email[])
 {
     int indicebuscado = indice;
     int i = 1;
-    while (!compara(agenda, indicebuscado, indice))
+    while (!compara(agenda, indicebuscado, email))
     {
         indicebuscado = (indice + i) % 32; // 32 é o tamanho da tabela hash
         if (i >= 32)

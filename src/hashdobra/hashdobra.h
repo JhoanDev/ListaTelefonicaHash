@@ -20,6 +20,6 @@ int BinarioParaInteiro(char *binario);
 int SondagemLinear(Telefone *agenda, int indice);
 
 // Algoritmo para buscar na tabela hash
-int SondagemLinearBusca(Telefone *agenda, int indice);
+int SondagemLinearBusca(Telefone *agenda, int indice, char email[]);
 
 #endif // HASH_H

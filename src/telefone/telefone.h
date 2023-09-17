@@ -11,7 +11,7 @@ Telefone preenchedados();
 int colisao(Telefone *agenda, int indice);
 
 // compara emails
-int compara(Telefone *agenda, int atual, int buscado);
+int compara(Telefone *agenda, int atual, char email[]);
 
 // cadastrar um novo contato na agenda
 void cadastra(Telefone *agenda,Telefone contato);

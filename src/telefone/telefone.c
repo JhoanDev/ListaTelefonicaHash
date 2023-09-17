@@ -38,9 +38,9 @@ int colisao(Telefone *agenda, int indice)
     return agenda[indice].nome[0] != '\0'; // Se o nome não estiver vazio, o índice está ocupado
 }
 
-int compara(Telefone *agenda, int atual, int buscado)
+int compara(Telefone *agenda, int atual, char email[])
 {
-    return strcmp(agenda[atual].email, agenda[buscado].email) == 0;
+    return (strcmp(agenda[atual].email, email) == 0);
 }
 
 void cadastra(Telefone *agenda, Telefone contato)
@@ -89,7 +89,7 @@ int buscarcontato(Telefone *agenda)
         scanf(" %[^\n]s", email);
     }
     int hash = Dobra(email);
-    int indice = SondagemLinearBusca(agenda, hash);
+    int indice = SondagemLinearBusca(agenda, hash, email);
     return indice;
 }
 
