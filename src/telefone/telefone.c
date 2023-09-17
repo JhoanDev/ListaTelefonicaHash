@@ -1,4 +1,5 @@
-#include "hashdobra.c"
+#include "../hashdobra/hashdobra.c"
+
 struct telefone
 {
     char nome[50];
@@ -87,8 +88,8 @@ int buscarcontato(Telefone *agenda)
         printYELLOW("Insira o email: ");
         scanf(" %[^\n]s", email);
     }
-    int hash =  Dobra(email);
-    int indice = SondagemLinearBusca(agenda,hash);
+    int hash = Dobra(email);
+    int indice = SondagemLinearBusca(agenda, hash);
     return indice;
 }
 

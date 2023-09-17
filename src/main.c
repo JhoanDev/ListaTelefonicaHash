@@ -1,4 +1,4 @@
-#include "telefone.c"
+#include "./telefone/telefone.c"
 
 #define MAX 32
 
@@ -6,7 +6,7 @@ int main(void)
 {
     char opc, volta;
     Telefone *agenda = (Telefone *)malloc(MAX * sizeof(Telefone));
-    char *caminho = "/home/jhoan/Desktop/Vscode/Github/ListaTelefonicaHash/data/"; //varia de pc para pc
+    char *caminho = "../data/";
     int qntcontatos = 0;
     if (agenda == NULL)
     {
@@ -137,5 +137,7 @@ int main(void)
             break;
         }
     }
+
+    free(agenda);
     return 0;
 }

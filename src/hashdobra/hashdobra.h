@@ -2,7 +2,7 @@
 #define HASH_H
 
 // Módulo: Hash dobra
-#include "telefone.h"
+#include "../telefone/telefone.h"
 
 // Transforma a string em binaria
 char *StringParaBinario(const char *texto);

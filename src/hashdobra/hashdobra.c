@@ -1,5 +1,5 @@
-#include "sistema.c"
 #include "hashdobra.h"
+#include "../system/sistema.c"
 
 int Dobra(char *texto)
 {

@@ -173,4 +173,3 @@ void printRED(char *text)
 {
     printf("%s%s%s", RED, text, WHITE);
 }
-

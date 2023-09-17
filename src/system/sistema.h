@@ -1,5 +1,6 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
+
 // Módulo: funções para tratativas e falhas
 #include <stdio.h>
 #include <stdarg.h>
