@@ -240,7 +240,6 @@ void editarcontato(Telefone *agenda)
     char email[50];
     printYELLOW("Insira o email do contato que deseja editar: ");
     scanf(" %[^\n]s", email);
-    
     // Verificar se o email é válido
     while (!verificaemail(email))
     {
@@ -248,7 +247,6 @@ void editarcontato(Telefone *agenda)
         printYELLOW("Insira o email: ");
         scanf(" %[^\n]s", email);
     }
-    
     int indice = SondagemLinearBusca(agenda, Dobra(email), email);
     if (indice != -1)
     {
@@ -262,64 +260,64 @@ void editarcontato(Telefone *agenda)
         printYELLOW("3. Número de Telefone\n");
         printYELLOW("4. Editar todos os campos\n");
         char opcao;
-        opcao = LeOpcao(OPCAO1,OPCAO4);
+        opcao = LeOpcao(OPCAO1, OPCAO4);
         switch (opcao)
         {
-            case OPCAO1:
-                printYELLOW("Editar Nome: ");
-                scanf(" %[^\n]s", agenda[indice].nome);
-                corrige_nome(agenda[indice].nome);
-                break;
-            case OPCAO2:
+        case OPCAO1:
+            printYELLOW("Editar Nome: ");
+            scanf(" %[^\n]s", agenda[indice].nome);
+            corrige_nome(agenda[indice].nome);
+            break;
+        case OPCAO2:
+            printYELLOW("Editar Email: ");
+            scanf(" %[^\n]s", agenda[indice].email);
+            while (!verificaemail(agenda[indice].email))
+            {
+                printRED("Por favor insira um email válido, ex:(nomesilva@hotgmail.com)\n");
                 printYELLOW("Editar Email: ");
                 scanf(" %[^\n]s", agenda[indice].email);
-                while (!verificaemail(agenda[indice].email))
-                {
-                    printRED("Por favor insira um email válido, ex:(nomesilva@hotgmail.com)\n");
-                    printYELLOW("Editar Email: ");
-                    scanf(" %[^\n]s", agenda[indice].email);
-                }
-                reorganizahash(agenda); //reoganizando pois mudou a chave (email);
-                break;
-            case OPCAO3:
-                printYELLOW("Editar Número de Telefone (apenas números e incluindo o DDD e o 9): ");
+            }
+            reorganizahash(agenda); // reoganizando pois mudou a chave (email);
+            break;
+        case OPCAO3:
+            printYELLOW("Editar Número de Telefone (apenas números e incluindo o DDD e o 9): ");
+            scanf(" %[^\n]s", agenda[indice].numero);
+            while (!verificanumerotelefone(agenda[indice].numero))
+            {
+                printRED("Por favor insira um número de telefone válido, ex:(84923435465)\n");
+                printYELLOW("Editar Número: ");
                 scanf(" %[^\n]s", agenda[indice].numero);
-                while (!verificanumerotelefone(agenda[indice].numero))
-                {
-                    printRED("Por favor insira um número de telefone válido, ex:(84923435465)\n");
-                    printYELLOW("Editar Número: ");
-                    scanf(" %[^\n]s", agenda[indice].numero);
-                }
-                formatanumerotelefone(agenda[indice].numero);
-                break;
-            case OPCAO4:
-                printYELLOW("Editar Nome: ");
-                scanf(" %[^\n]s", agenda[indice].nome);
-                corrige_nome(agenda[indice].nome);
-                
+            }
+            formatanumerotelefone(agenda[indice].numero);
+            break;
+        case OPCAO4:
+            printYELLOW("Editar Nome: ");
+            scanf(" %[^\n]s", agenda[indice].nome);
+            corrige_nome(agenda[indice].nome);
+
+            printYELLOW("Editar Email: ");
+            scanf(" %[^\n]s", agenda[indice].email);
+            while (!verificaemail(agenda[indice].email))
+            {
+                printRED("Por favor insira um email válido, ex:(nomesilva@hotgmail.com)\n");
                 printYELLOW("Editar Email: ");
                 scanf(" %[^\n]s", agenda[indice].email);
-                while (!verificaemail(agenda[indice].email))
-                {
-                    printRED("Por favor insira um email válido, ex:(nomesilva@hotgmail.com)\n");
-                    printYELLOW("Editar Email: ");
-                    scanf(" %[^\n]s", agenda[indice].email);
-                }
-                
-                printYELLOW("Editar Número de Telefone (apenas números e incluindo o DDD e o 9): ");
+            }
+
+            printYELLOW("Editar Número de Telefone (apenas números e incluindo o DDD e o 9): ");
+            scanf(" %[^\n]s", agenda[indice].numero);
+            while (!verificanumerotelefone(agenda[indice].numero))
+            {
+                printRED("Por favor insira um número de telefone válido, ex:(84923435465)\n");
+                printYELLOW("Editar Número: ");
                 scanf(" %[^\n]s", agenda[indice].numero);
-                while (!verificanumerotelefone(agenda[indice].numero))
-                {
-                    printRED("Por favor insira um número de telefone válido, ex:(84923435465)\n");
-                    printYELLOW("Editar Número: ");
-                    scanf(" %[^\n]s", agenda[indice].numero);
-                }
-                formatanumerotelefone(agenda[indice].numero);
-                reorganizahash(agenda); //reoganizando pois mudou a chave (email);
-                break;
-            default:
-                printRED("Opção inválida.\n");
-                break;
+            }
+            formatanumerotelefone(agenda[indice].numero);
+            reorganizahash(agenda); // reoganizando pois mudou a chave (email);
+            break;
+        default:
+            printRED("Opção inválida.\n");
+            break;
         }
         printGREEN("Contato editado com sucesso.\n");
     }
