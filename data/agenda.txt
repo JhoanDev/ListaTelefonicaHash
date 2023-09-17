@@ -2,6 +2,10 @@ Nome: Jhoan Fernandes
 Email: jhoan@gmail.com
 Número: (84) 99952-3456
 
+Nome: Pedro Silva
+Email: pedro@gmail.com
+Número: (84) 12345-6789
+
 Nome: Lucas Fernandes
 Email: Lucas@gmail.com
 Número: (12) 34567-8910

@@ -1,7 +1,5 @@
 #include "./telefone/telefone.c"
 
-#define MAX 32
-
 int main(void)
 {
     char opc, volta;
@@ -93,6 +91,7 @@ int main(void)
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
+                limparagenda(agenda);
                 qntcontatos = importarcontatos(agenda,caminho);
             }
             else
@@ -105,6 +104,7 @@ int main(void)
             volta = LeOpcao(OPCAO1, OPCAO2);
             if (volta == OPCAO1)
             {
+                apagacontato(agenda);
             }
             else
             {

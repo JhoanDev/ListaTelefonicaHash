@@ -46,18 +46,18 @@ int compara(Telefone *agenda, int atual, char email[])
 void cadastra(Telefone *agenda, Telefone contato)
 {
     int codigohash = Dobra(contato.email);
-    printf("\n");
     if (colisao(agenda, codigohash))
     {
         int novoindice = SondagemLinear(agenda, codigohash);
         agenda[novoindice] = contato;
-        printGREEN("Contato adicionado com sucesso.\n");
+        printGREEN("Contato adicionado com sucesso.");
     }
     else
     {
         agenda[codigohash] = contato;
-        printGREEN("Contato adicionado com sucesso.\n");
+        printGREEN("Contato adicionado com sucesso.");
     }
+    printf("\n");
 }
 
 void listarcontatos(Telefone *agenda)
@@ -66,7 +66,7 @@ void listarcontatos(Telefone *agenda)
     int qnt = 1;
     for (int i = 0; i < 32; i++)
     {
-        if (agenda[i].nome[0] != '\0')
+        if (verificaemail(agenda[i].email))
         {
             printf("Contato [%d]\n", qnt++);
             printf("Nome: %s\n", agenda[i].nome);
@@ -143,13 +143,9 @@ void exportarcontatos(Telefone *agenda, char *caminho)
         exit(1);
     }
 
-    // Agora você pode usar o arquivo 'exporta' para escrever os contatos
-    // Certifique-se de escrever os contatos na forma desejada no arquivo
-
-    // Por exemplo:
     for (int i = 0; i < 32; i++)
     { // Supondo que sua tabela hash tenha 100 elementos
-        if (agenda[i].nome[0] != '\0')
+        if (verificaemail(agenda[i].email))
         {
             fprintf(exporta, "Nome: %s\n", agenda[i].nome);
             fprintf(exporta, "Email: %s\n", agenda[i].email);
@@ -166,7 +162,6 @@ void geracontatos(char *caminho)
     printYELLOW("Insira o nome que deseja em seu arquivo: ");
     char nomearq[20];
     scanf(" %[^\n]s", nomearq);
-    // Adicione a extensão .txt ao nome do arquivo
     char nomecomtxt[100]; // Tamanho suficiente para acomodar o nome e a extensão .txt
     sprintf(nomecomtxt, "%s%s.txt", caminho, nomearq);
     FILE *exporta = fopen(nomecomtxt, "w");
@@ -190,4 +185,57 @@ void geracontatos(char *caminho)
         fprintf(exporta, "\n"); // Linha em branco entre os contatos
     }
     fclose(exporta);
+}
+void apagacontato(Telefone *agenda)
+{
+    printYELLOW("Insira o email do contato que deseja apagar: ");
+    char email[50];
+    scanf(" %[^\n]s", email);
+    while (!verificaemail(email))
+    {
+        printRED("Por favor insira um email valido, ex:(nomesilva@hotgmail.com)\n");
+        printYELLOW("Insira o email: ");
+        scanf(" %[^\n]s", email);
+    }
+    int indice = SondagemLinearBusca(agenda, Dobra(email), email);
+    if (indice != -1)
+    {
+        // Contato encontrado, apague-o definindo os campos como vazios
+        strcpy(agenda[indice].nome, "");
+        strcpy(agenda[indice].email, "");
+        strcpy(agenda[indice].numero, "");
+        printGREEN("Contato apagado com sucesso.\n");
+    }
+    else
+    {
+        printRED("Contato não encontrado na agenda.\n");
+    }
+}
+
+Telefone * reorganizahash(Telefone *agenda, Telefone *organizada)
+{
+
+    int qnt = 1;
+    for (int i = 0; i < 32; i++)
+    {
+        if (verificaemail(agenda[i].email))
+        {
+            printf("Contato [%d]\n", qnt++);
+            printf("Nome: %s\n", agenda[i].nome);
+            printf("Email: %s\n", agenda[i].email);
+            printf("Número: %s\n", agenda[i].numero);
+            printf("\n");
+        }
+    }
+}
+
+void limparagenda(Telefone *agenda)
+{
+    for (int i = 0; i < 32; i++)
+    {
+        strcpy(agenda[i].nome, "");
+        strcpy(agenda[i].email, "");
+        strcpy(agenda[i].numero, "");
+    }
+    printGREEN("Agenda limpa com sucesso(pronto para a importação).\n");
 }

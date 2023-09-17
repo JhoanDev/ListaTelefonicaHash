@@ -16,6 +16,8 @@
 #define OPCAO7 '7'
 #define OPCAO8 '8'
 
+#define MAX 32
+
 void LimpaBuffer(void)
 {
     int valorLido;
