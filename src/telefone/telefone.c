@@ -35,7 +35,7 @@ Telefone preenchedados()
 
 int colisao(Telefone *agenda, int indice)
 {
-    return agenda[indice].nome[0] != '\0'; // Se o nome não estiver vazio, o índice está ocupado
+    return agenda[indice].nome[0] != '\0';
 }
 
 int compara(Telefone *agenda, int atual, char email[])
@@ -95,9 +95,7 @@ int importarcontatos(Telefone *agenda, char *caminho)
     printYELLOW("Insira o nome do arquivo a ser importado: ");
     char nomearq[20];
     scanf(" %[^\n]s", nomearq);
-
-    // Crie o nome do arquivo completo com caminho e extensão
-    char nomecomtxt[100]; // Tamanho suficiente para acomodar o nome e a extensão .txt
+    char nomecomtxt[100];
     sprintf(nomecomtxt, "%s%s.txt", caminho, nomearq);
 
     FILE *importa = fopen(nomecomtxt, "r");
@@ -130,8 +128,7 @@ void exportarcontatos(Telefone *agenda, char *caminho)
     printYELLOW("Insira o nome que deseja em seu arquivo: ");
     char nomearq[20];
     scanf(" %[^\n]s", nomearq);
-    // Adicione a extensão .txt ao nome do arquivo
-    char nomecomtxt[100]; // Tamanho suficiente para acomodar o nome e a extensão .txt
+    char nomecomtxt[100];
     sprintf(nomecomtxt, "%s%s.txt", caminho, nomearq);
 
     FILE *exporta = fopen(nomecomtxt, "w");
@@ -160,7 +157,7 @@ void geracontatos(char *caminho)
     printYELLOW("Insira o nome que deseja em seu arquivo: ");
     char nomearq[20];
     scanf(" %[^\n]s", nomearq);
-    char nomecomtxt[100]; // Tamanho suficiente para acomodar o nome e a extensão .txt
+    char nomecomtxt[100];
     sprintf(nomecomtxt, "%s%s.txt", caminho, nomearq);
     FILE *exporta = fopen(nomecomtxt, "w");
     if (exporta == NULL)
@@ -168,19 +165,16 @@ void geracontatos(char *caminho)
         printRED("Erro ao criar o arquivo.");
         exit(1);
     }
-
-    // Escreve os contatos no arquivo
     for (int i = 1; i <= 32; i++)
     {
         fprintf(exporta, "Nome: Contato %d\n", i);
         fprintf(exporta, "Email: contato%d@gmail.com\n", i);
         fprintf(exporta, "Número: (%d) %d%d%d%d%d-%d%d%d%d\n",
-                (i % 10) + 1,                                     // DDD (de 1 a 10)
-                (i % 10), (i % 10), (i % 10), (i % 10), (i % 10), // Primeira parte do número
-                (i % 10), (i % 10), (i % 10), (i % 10)            // Segunda parte do número
-        );
+                (i % 10) + 1,
+                (i % 10), (i % 10), (i % 10), (i % 10), (i % 10),
+                (i % 10), (i % 10), (i % 10), (i % 10));
 
-        fprintf(exporta, "\n"); // Linha em branco entre os contatos
+        fprintf(exporta, "\n");
     }
     fclose(exporta);
 }
@@ -198,7 +192,6 @@ void apagacontato(Telefone *agenda)
     int indice = SondagemLinearBusca(agenda, Dobra(email), email);
     if (indice != -1)
     {
-        // Contato encontrado, apague-o definindo os campos como vazios
         strcpy(agenda[indice].nome, "");
         strcpy(agenda[indice].email, "");
         strcpy(agenda[indice].numero, "");
@@ -210,7 +203,7 @@ void apagacontato(Telefone *agenda)
     }
 }
 
-Telefone * reorganizahash(Telefone *agenda)
+Telefone *reorganizahash(Telefone *agenda)
 {
     Telefone *organizada = (Telefone *)malloc(MAX * sizeof(Telefone));
     if (organizada == NULL)
@@ -223,7 +216,7 @@ Telefone * reorganizahash(Telefone *agenda)
     {
         if (verificaemail(agenda[i].email))
         {
-            cadastra(organizada,agenda[i]);
+            cadastra(organizada, agenda[i]);
         }
     }
     free(agenda);
