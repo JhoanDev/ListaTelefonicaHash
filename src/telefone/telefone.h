@@ -35,7 +35,7 @@ void geracontatos(char *caminho);
 void apagacontato(Telefone *agenda);
 
 // reorganiza a tabela apos exclusao, ou edição do email.
-Telefone *reorganizahash(Telefone *agenda);
+void reorganizahash(Telefone *agenda);
 
 // limpa agenda
 void limparagenda(Telefone *agenda);

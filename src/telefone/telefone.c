@@ -35,7 +35,7 @@ Telefone preenchedados()
 
 int colisao(Telefone *agenda, int indice)
 {
-    return agenda[indice].nome[0] != '\0';
+    return verificaemail(agenda[indice].email);
 }
 
 int compara(Telefone *agenda, int atual, char email[])
@@ -203,24 +203,25 @@ void apagacontato(Telefone *agenda)
     }
 }
 
-Telefone *reorganizahash(Telefone *agenda)
+void reorganizahash(Telefone *agenda)
 {
-    Telefone *organizada = (Telefone *)malloc(MAX * sizeof(Telefone));
-    if (organizada == NULL)
+    Telefone *novaAgenda = (Telefone *)malloc(MAX * sizeof(Telefone));
+    if (novaAgenda == NULL)
     {
-        printRED("[ERRO]");
+        printRED("Erro de alocação de memória.");
         exit(1);
     }
-    int qnt = 1;
-    for (int i = 0; i < 32; i++)
+    for (int i = 0; i < MAX; i++)
     {
         if (verificaemail(agenda[i].email))
         {
-            cadastra(organizada, agenda[i]);
+            int codigohash = Dobra(agenda[i].email);
+            int novoindice = SondagemLinear(novaAgenda, codigohash);
+            novaAgenda[novoindice] = agenda[i];
         }
     }
-    free(agenda);
-    return organizada;
+    agenda = novaAgenda;
+    free(novaAgenda);
 }
 
 void limparagenda(Telefone *agenda)
@@ -278,7 +279,7 @@ void editarcontato(Telefone *agenda)
                     printYELLOW("Editar Email: ");
                     scanf(" %[^\n]s", agenda[indice].email);
                 }
-                agenda = reorganizahash(agenda); //reoganizando pois mudou a chave (email);
+                reorganizahash(agenda); //reoganizando pois mudou a chave (email);
                 break;
             case OPCAO3:
                 printYELLOW("Editar Número de Telefone (apenas números e incluindo o DDD e o 9): ");
@@ -314,7 +315,7 @@ void editarcontato(Telefone *agenda)
                     scanf(" %[^\n]s", agenda[indice].numero);
                 }
                 formatanumerotelefone(agenda[indice].numero);
-                agenda = reorganizahash(agenda); //reoganizando pois mudou a chave (email);
+                reorganizahash(agenda); //reoganizando pois mudou a chave (email);
                 break;
             default:
                 printRED("Opção inválida.\n");

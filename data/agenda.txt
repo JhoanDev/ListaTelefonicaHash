@@ -1,12 +1,20 @@
-Nome: Jhoan Fernandes
-Email: jhoan@gmail.com
-Número: (84) 99952-3456
-
 Nome: Pedro Silva
 Email: pedro@gmail.com
 Número: (84) 12345-6789
 
+Nome: Murilo Couto
+Email: muriladas@gmail.com
+Número: (84) 12387-6934
+
+Nome: Jhoan Fernandes
+Email: jhoan@gmail.com
+Número: (84) 99952-3456
+
+Nome: Heitor Claudino
+Email: heitor@out.com
+Número: (84) 54398-7123
+
 Nome: Lucas Fernandes
-Email: Lucas@gmail.com
+Email: lucas@out.com
 Número: (12) 34567-8910
 
