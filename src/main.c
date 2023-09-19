@@ -97,6 +97,7 @@ int main(void)
             if (volta == OPCAO1)
             {
                 apagacontato(agenda);
+                qntcontatos -= 1;
                 reorganizahash(agenda);
             }
             else
