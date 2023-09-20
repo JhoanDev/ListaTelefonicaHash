@@ -39,14 +39,14 @@ char le_opcao(char menorValor, char maiorValor)
         op = entrada[0];
         if (op >= menorValor && op <= maiorValor && strlen(entrada) == 1)
         {
-            LimpaBuffer();
+            limpa_buffer();
             break;
         }
         else
         {
             sprintf(text, "Opcao invalida. A opcao deve estar entre %c e %c.\n", menorValor, maiorValor);
-            printRED(text);
-            LimpaBuffer();
+            print_red(text);
+            limpa_buffer();
         }
     }
     return op;
