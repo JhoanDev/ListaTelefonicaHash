@@ -18,7 +18,7 @@
 
 #define MAX 32
 
-void LimpaBuffer(void)
+void limpa_buffer(void)
 {
     int valorLido;
     do
@@ -27,7 +27,7 @@ void LimpaBuffer(void)
     } while ((valorLido != '\n') && (valorLido != EOF));
 }
 
-char LeOpcao(char menorValor, char maiorValor)
+char le_opcao(char menorValor, char maiorValor)
 {
     char op;
     char entrada[100];
