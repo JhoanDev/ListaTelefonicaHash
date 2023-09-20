@@ -115,7 +115,7 @@ int sondagem_linear(Telefone *agenda, int indice)
     int i = 1;
     while (colisao(agenda, novoindice))
     {
-        novoindice = (indice + i) % 32; 
+        novoindice = (indice + i) % 32;
         i++;
     }
     return novoindice;

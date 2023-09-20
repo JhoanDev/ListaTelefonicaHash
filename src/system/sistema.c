@@ -134,7 +134,7 @@ int verifica_numero_telefone(const char numero[])
 void formata_numero_telefone(char numero[])
 {
     int len = strlen(numero);
-    char numeroFormatado[20]; 
+    char numeroFormatado[20];
     sprintf(numeroFormatado, "(%c%c) %c%c%c%c%c-%c%c%c%c", numero[0], numero[1], numero[2], numero[3], numero[4], numero[5], numero[6], numero[7], numero[8], numero[9], numero[10]);
     strcpy(numero, numeroFormatado);
 }
