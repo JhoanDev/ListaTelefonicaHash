@@ -9,10 +9,10 @@
 #include <ctype.h>
 
 // Lê e descarta caracteres encontrados na entrada
-void LimpaBuffer(void);
+void limpa_buffer(void);
 
 // Lê e valida a opção digitada pelo usuário
-char LeOpcao(char menorValor, char maiorValor);
+char le_opcao(char menorValor, char maiorValor);
 
 // corrige o nome
 void corrige_nome(char nome[]);
@@ -21,21 +21,21 @@ void corrige_nome(char nome[]);
 void menu(void);
 
 // Imprime em verde
-void printGREEN(char *text);
+void print_green(char *text);
 
 // Imprime em amarelo
-void printYELLOW(char *text);
+void print_yellow(char *text);
 
 // Imprime em vermelho
-void printRED(char *text);
+void print_red(char *text);
 
 // verificação do numero
-int verificanumerotelefone(const char numero[]);
+int verifica_numero_telefone(const char numero[]);
 
 // verificação do email
-int verificaemail(const char email[]);
+int verifica_email(const char email[]);
 
 // formatação do numero
-void formatanumerotelefone(char numero[]);
+void formata_numero_telefone(char numero[]);
 
 #endif // SISTEMA_H
