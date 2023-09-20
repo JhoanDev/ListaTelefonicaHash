@@ -7,7 +7,7 @@ struct telefone
     char numero[16];
 };
 
-Telefone preenchedados()
+Telefone preenche_dados()
 {
     Telefone novo;
     printYELLOW("Insira o nome: ");
@@ -57,7 +57,7 @@ void cadastra(Telefone *agenda, Telefone contato)
     }
 }
 
-void listarcontatos(Telefone *agenda)
+void listar_contatos(Telefone *agenda)
 {
     printGREEN("Lista de Contatos:\n\n");
     int qnt = 1;
@@ -74,7 +74,7 @@ void listarcontatos(Telefone *agenda)
     }
 }
 
-int buscarcontato(Telefone *agenda)
+int buscar_contato(Telefone *agenda)
 {
     char email[50];
     printYELLOW("Insira o email do contato que deseja buscar: ");
@@ -90,7 +90,7 @@ int buscarcontato(Telefone *agenda)
     return indice;
 }
 
-int importarcontatos(Telefone *agenda, char *caminho)
+int importar_contatos(Telefone *agenda, char *caminho)
 {
     printYELLOW("Insira o nome do arquivo a ser importado: ");
     char nomearq[20];
@@ -123,7 +123,7 @@ int importarcontatos(Telefone *agenda, char *caminho)
     return i;
 }
 
-void exportarcontatos(Telefone *agenda, char *caminho)
+void exportar_contatos(Telefone *agenda, char *caminho)
 {
     printYELLOW("Insira o nome que deseja em seu arquivo: ");
     char nomearq[20];
@@ -152,7 +152,7 @@ void exportarcontatos(Telefone *agenda, char *caminho)
     fclose(exporta);
 }
 
-void geracontatos(char *caminho)
+void gera_contatos(char *caminho)
 {
     printYELLOW("Insira o nome que deseja em seu arquivo: ");
     char nomearq[20];
@@ -178,7 +178,7 @@ void geracontatos(char *caminho)
     }
     fclose(exporta);
 }
-void apagacontato(Telefone *agenda)
+void apaga_contato(Telefone *agenda)
 {
     printYELLOW("Insira o email do contato que deseja apagar: ");
     char email[50];
@@ -203,7 +203,7 @@ void apagacontato(Telefone *agenda)
     }
 }
 
-void reorganizahash(Telefone *agenda)
+void reorganiza_hash(Telefone *agenda)
 {
     Telefone *novaAgenda = (Telefone *)malloc(MAX * sizeof(Telefone));
     if (novaAgenda == NULL)
@@ -224,7 +224,7 @@ void reorganizahash(Telefone *agenda)
     free(novaAgenda);
 }
 
-void limparagenda(Telefone *agenda)
+void limpar_agenda(Telefone *agenda)
 {
     for (int i = 0; i < 32; i++)
     {
@@ -235,7 +235,7 @@ void limparagenda(Telefone *agenda)
     printGREEN("Agenda limpa com sucesso(pronto para a importação).\n");
 }
 
-void editarcontato(Telefone *agenda)
+void editar_contato(Telefone *agenda)
 {
     char email[50];
     printYELLOW("Insira o email do contato que deseja editar: ");
