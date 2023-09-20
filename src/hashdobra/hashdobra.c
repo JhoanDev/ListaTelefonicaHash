@@ -3,7 +3,7 @@
 
 int dobra(char *texto)
 {
-    char *bin = StringParaBinario(texto);
+    char *bin = string_para_binario(texto);
     int tamanhoDaString = strlen(bin);
     int tamanhoDoSegmento = 5;
     int i = 0;
@@ -11,18 +11,18 @@ int dobra(char *texto)
     char *resultado = (char *)malloc(5 * sizeof(char));
     if (resultado == NULL)
     {
-        printRED("Erro de alocação de memória.");
+        print_red("Erro de alocação de memória.");
         exit(1);
     }
     strncpy(segmento, bin + i, tamanhoDoSegmento);
     strncpy(resultado, bin + i + tamanhoDoSegmento, tamanhoDoSegmento);
-    resultado = SomaDiferente(segmento, resultado);
+    resultado = soma_diferente(segmento, resultado);
     for (i = tamanhoDoSegmento * 2; i < tamanhoDaString; i += tamanhoDoSegmento)
     {
         strncpy(segmento, bin + i, tamanhoDoSegmento);
-        resultado = SomaDiferente(resultado, segmento);
+        resultado = soma_diferente(resultado, segmento);
     }
-    int hash = BinarioParaInteiro(resultado);
+    int hash = binario_para_inteiro(resultado);
     return hash;
 }
 
@@ -34,7 +34,7 @@ char *string_para_binario(const char *texto)
     char *binario = (char *)malloc(tamanhoBinario);
     if (binario == NULL)
     {
-        printRED("Erro de alocação de memória.");
+        print_red("Erro de alocação de memória.");
         exit(1);
     }
     for (i = 0; texto[i] != '\0'; i++)
@@ -53,7 +53,7 @@ char *string_para_binario(const char *texto)
         char *novoBinario = (char *)malloc((novoTamanho + 1) * sizeof(char));
         if (novoBinario == NULL)
         {
-            printRED("Erro de alocação de memória.");
+            print_red("Erro de alocação de memória.");
             exit(1);
         }
         for (i = 0; i < 5 - diferenca; i++)
@@ -78,7 +78,7 @@ char *soma_diferente(char *dobra, char *naodobra)
     char *resultado = (char *)malloc((tamanho + 1) * sizeof(char));
     if (resultado == NULL)
     {
-        printRED("Erro de alocação de memória.");
+        print_red("Erro de alocação de memória.");
         exit(1);
     }
     while (i < tamanho)
