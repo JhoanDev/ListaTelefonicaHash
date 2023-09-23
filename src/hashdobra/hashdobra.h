@@ -5,21 +5,21 @@
 #include "../telefone/telefone.h"
 
 // Transforma a string em binaria
-char *StringParaBinario(const char *texto);
+char *string_para_binario(const char *texto);
 
 // faz a soma "dobrando" o primeiro termo
-char *SomaDiferente(char *dobra, char *naodobra);
+char *soma_diferente(char *dobra, char *naodobra);
 
 // função hash da dobra
-int Dobra(char *bin);
+int dobra(char *bin);
 
 // transforma o numero em binario para inteiro
-int BinarioParaInteiro(char *binario);
+int binario_para_inteiro(char *binario);
 
 // Algoritmo para tratamento de colisões
-int SondagemLinear(Telefone *agenda, int indice);
+int sondagem_linear(Telefone *agenda, int indice);
 
 // Algoritmo para buscar na tabela hash
-int SondagemLinearBusca(Telefone *agenda, int indice, char email[]);
+int sondagem_linear_busca(Telefone *agenda, int indice, char email[]);
 
 #endif // HASH_H

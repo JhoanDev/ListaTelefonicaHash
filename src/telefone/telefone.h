@@ -5,7 +5,7 @@
 typedef struct telefone Telefone;
 
 // função para preencher um contato
-Telefone preenchedados();
+Telefone preenche_dados();
 
 // verifica se ha colisão
 int colisao(Telefone *agenda, int indice);
@@ -17,30 +17,30 @@ int compara(Telefone *agenda, int atual, char email[]);
 void cadastra(Telefone *agenda, Telefone contato);
 
 // listar contatos da lista telefonica
-void listarcontatos(Telefone *agenda);
+void listar_contatos(Telefone *agenda);
 
 // buscar contato
-int buscarcontato(Telefone *agenda);
+int buscar_contato(Telefone *agenda);
 
 // importar contatos
-int importarcontatos(Telefone *agenda, char *caminho);
+int importar_contatos(Telefone *agenda, char *caminho);
 
 // exportar contatos
-void exportarcontatos(Telefone *agenda, char *caminho);
+void exportar_contatos(Telefone *agenda, char *caminho);
 
 // gerar contatos
-void geracontatos(char *caminho);
+void gera_contatos(char *caminho);
 
 // apaga um contato da tabela
-void apagacontato(Telefone *agenda);
+void apaga_contato(Telefone *agenda);
 
 // reorganiza a tabela apos exclusao, ou edição do email.
-void reorganizahash(Telefone *agenda);
+void reorganiza_hash(Telefone *agenda);
 
 // limpa agenda
-void limparagenda(Telefone *agenda);
+void limpar_agenda(Telefone *agenda);
 
 // edita um contato
-void editarcontato(Telefone *agenda);
+void editar_contato(Telefone *agenda);
 
 #endif // TELEFONE_H

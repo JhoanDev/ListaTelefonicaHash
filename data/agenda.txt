@@ -10,6 +10,10 @@ Nome: Jhoan Fernandes
 Email: jhoan@gmail.com
 Número: (84) 99952-3456
 
+Nome: Gustavo Oliveira
+Email: gusta@out.com
+Número: (12) 39501-8328
+
 Nome: Heitor Claudino
 Email: heitor@out.com
 Número: (84) 54398-7123
