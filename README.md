@@ -3,6 +3,10 @@ A program written in C that stores phone numbers in a Hash Table.
 
 To store into table, this program uses double hashing and linear probing to avoid hash collisions.
 
+The arguments (datas) in the hash table are binary numbers. This means that one input will be converted to binary number and then inserted in a specific position of the hash table. This program uses user's e-mail as input.
+
+The linear probing method avoids hash collisions. If data is inserted into an unavailable position, the position is then incremented. If this new position is free, the data is stored in the hash table. Otherwise, this process will be repeated until a free position is found.
+
 ## Summary
 - [Features](#features)
 - [Double hashing code](#double-hashing-code)
