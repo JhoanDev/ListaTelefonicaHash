@@ -9,7 +9,7 @@ int main(void)
         print_red("[ERRO]");
         exit(1);
     }
-    char *caminho = "../data/";
+    char *caminho = "./data/";
     int qntcontatos = 0;
     while (opc != OPCAO8)
     {
